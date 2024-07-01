@@ -13,5 +13,11 @@
       "cache": false,
       "persistent": true
     }
+  },
+  "pipeline": {
+    "generate-mfe-remote": {
+      "dependsOn": [],
+      "outputs": []
+    }
   }
 }

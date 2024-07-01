@@ -12,32 +12,13 @@ module.exports = () => ({
     plugins: {
       add: [
         new ModuleFederationPlugin({
-          name: "mfeOne",
+          name: 'auth',
           filename: "remoteEntry.js",
           exposes: {
-            "./Card": "./src/Card",
-            "./MFE1Router": "./src/Router",
+            './Router': './src/router',
           },
           shared: {
             ...deps,
-            // card: {
-            //   singleton: true,
-            // },
-            // "movies-content": {
-            //   singleton: true,
-            // },
-            // "playlist-content": {
-            //   singleton: true,
-            // },
-            // tsconfig: {
-            //   singleton: true,
-            // },
-            // ui: {
-            //   singleton: true,
-            // },
-            // store: {
-            //   singleton: true,
-            // },
             react: {
               singleton: true,
               requiredVersion: deps.react,

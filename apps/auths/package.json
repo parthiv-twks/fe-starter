@@ -1,5 +1,5 @@
 {
-  "name": "container",
+  "name": "auths",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,7 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "craco start",
+    "dev": "PORT=3003 craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject"

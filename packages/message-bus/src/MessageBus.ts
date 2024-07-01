@@ -1,11 +1,20 @@
 // Message bus library
-class MessageBus {
-  private publishedEventRegistry = {};
 
-  publishEvent(eventName, data) {
+interface MessageEvent<T>{
+  name?:string;
+  data?:T;
+  handlers?: Function[];
+}
+interface EventRegistry<T>{
+  [key: string]: MessageEvent<T>
+}
+class MessageBus<T> {
+  private publishedEventRegistry:EventRegistry<T>= {};
+
+  publishEvent<T>(eventName:string, data: T) {
     const registeredEvent = this.publishedEventRegistry[eventName];
 
-    this.publishedEventRegistry = {
+    this.publishedEventRegistry ={
       ...this.publishedEventRegistry,
       [eventName]: {
         ...registeredEvent,
@@ -13,12 +22,12 @@ class MessageBus {
         data: data
       }
     };
-    this.publishedEventRegistry[eventName]?.handlers?.forEach(handler => {
+    this.publishedEventRegistry[eventName]?.handlers?.forEach((handler:Function) => {
       handler(this.publishedEventRegistry[eventName].data);
     });
   }
 
-  subscribeEvent(eventName, handler) {
+  subscribeEvent(eventName:string, handler:Function) {
     const registeredEvent = this.publishedEventRegistry[eventName];
 
     this.publishedEventRegistry = {
@@ -31,7 +40,7 @@ class MessageBus {
     };
   }
 
-  unsubscribe(eventName) {
+  unsubscribe(eventName:string) {
     this.publishedEventRegistry = {
       ...this.publishedEventRegistry,
       [eventName]: undefined

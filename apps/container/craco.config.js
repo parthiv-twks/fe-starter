@@ -16,6 +16,7 @@ module.exports = () => ({
           filename: "remoteEntry.js",
           remotes: {
             mfeOne: "mfeOne@http://localhost:3001/remoteEntry.js",
+            auth: "auth@http://localhost:3003/remoteEntry.js",
           },
           shared: {
             ...deps,
